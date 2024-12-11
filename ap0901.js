@@ -196,9 +196,12 @@ document.getElementById("danger-key-game").addEventListener("click", () => {
     camera.updateProjectionMatrix();
 
     robots.children.forEach((robot) => {
+      robot.rotation.x = (robot.rotation.x + 0.01) % (2 * Math.PI);
       robot.rotation.y = (robot.rotation.y + 0.01) % (2 * Math.PI);
-      robot.position.y = Math.sin(robot.rotation.y);
+      robot.rotation.z = (robot.rotation.z + 0.005) % (2 * Math.PI);
+      robot.position.y = Math.sin(robot.rotation.y) * 2;
     });
+    
 
     const gui = new GUI();
     gui.add(param, "fov", 10, 100);
